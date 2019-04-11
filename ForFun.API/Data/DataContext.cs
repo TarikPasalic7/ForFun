@@ -9,7 +9,7 @@ namespace ForFun.API.Data
         }
      
      public DbSet<Values> Values { get; set; }
-    
+     public DbSet<User> Users { get; set; }
    
     }
 }
