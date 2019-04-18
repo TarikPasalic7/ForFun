@@ -1,0 +1,30 @@
+<div class="container mt-5">
+
+<div *ngIf="!registermode" style="text-align: center">
+
+<h1>Register</h1>
+<div class="text-cent">
+    <button class="btn btn-primary btn-lg mr-2" (click)="registertoggle()">Register</button>
+    <button class="btn btn-secondary btn-lg ">Cancel</button>
+</div>
+
+
+</div>
+
+
+<div *ngIf="registermode" class="container ">
+
+  <div class="row justify-conent-center">
+
+
+    <div class="col-4 ">
+
+<app-register  (cancelregister)="cancelregisterMode($event)"></app-register>
+
+    </div>
+  </div>
+</div>
+
+
+
+</div>
