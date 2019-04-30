@@ -16,10 +16,46 @@ namespace DatingApp.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.3-servicing-35854");
 
+            modelBuilder.Entity("ForFun.API.Models.Photo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("URL");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<bool>("mainphoto");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Photos");
+                });
+
             modelBuilder.Entity("ForFun.API.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("BirthDate");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Country");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Gender");
+
+                    b.Property<string>("Introduction");
+
+                    b.Property<DateTime>("LastActive");
 
                     b.Property<byte[]>("PasswordSalt");
 
@@ -42,6 +78,14 @@ namespace DatingApp.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Values");
+                });
+
+            modelBuilder.Entity("ForFun.API.Models.Photo", b =>
+                {
+                    b.HasOne("ForFun.API.Models.User", "User")
+                        .WithMany("Photos")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
