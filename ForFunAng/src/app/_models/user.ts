@@ -2,15 +2,15 @@ import { Photo } from './photo';
 
 export interface User {
 
-    Id: number;
-    Username: string;
-    Gender: string;
+    id: number;
+    username: string;
+    gender: string;
     age: number;
-    Created: Date;
+    created: Date;
     lastactive: Date;
-    City: string;
-    Country: string;
+    city: string;
+    country: string;
     photoURL: string;
-    Photos?: Photo[];
+    photos?: Photo[];
 }
 
