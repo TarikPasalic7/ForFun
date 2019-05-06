@@ -26,6 +26,7 @@ namespace ForFun.API.Helpers
                 op.ResolveUsing(d=>d.BirthDate.CalculateAge());
             });;
             CreateMap<Photo,PhotoDetailsDto>();
+            CreateMap<UserForUpdateDto,User>();
         }
     }
 }
