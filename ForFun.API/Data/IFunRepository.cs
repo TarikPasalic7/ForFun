@@ -12,5 +12,8 @@ namespace ForFun.API.Data
          Task <bool> SaveAll();
          Task <IEnumerable<User>> Getusers(); 
          Task<User> GetUser(int id);
+
+         Task<Photo> GetPhoto(int id);
+          Task<Photo> GetMainPhotoUser(int Userid);
     }
 }

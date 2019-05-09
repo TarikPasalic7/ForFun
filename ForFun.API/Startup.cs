@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
+using ForFun.API.Helpers;
 
 namespace DatingApp.API
 {
@@ -37,6 +38,7 @@ namespace DatingApp.API
               Op.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore;  
             });
             services.AddCors(); 
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddTransient<Seed>();
             services.AddAutoMapper();
             services.AddScoped<IAuthRepository,AuthRepository>();

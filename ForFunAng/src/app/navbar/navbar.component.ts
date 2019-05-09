@@ -11,9 +11,11 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   model: any = {};
+  photoUrl: string;
   constructor(public authservice: AuthService, private alertify: AlertifyService, private router: Router) { }
 
   ngOnInit() {
+    this.authservice.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
   login() {
 
@@ -32,6 +34,9 @@ return this.authservice.loggedin();
 }
 logout() {
 localStorage.removeItem('token');
+localStorage.removeItem('user');
+this.authservice.decodedToken = null;
+this.authservice.currentUser = null;
 this.alertify.message ('logged out');
 this.router.navigate(['/home']); // Navigates back to /home route
 
