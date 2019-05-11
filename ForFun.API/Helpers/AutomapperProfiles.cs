@@ -29,6 +29,7 @@ namespace ForFun.API.Helpers
             CreateMap<UserForUpdateDto,User>();
             CreateMap<Photo,PhotoForReturnDto>();
             CreateMap<PhotoCreatingDto,Photo>();
+            CreateMap<UserForRegisterDto,User>();
         }
     }
 }

@@ -38,15 +38,11 @@ namespace ForFun.API.Controllers
             if (await _repo.UserExusts(userdto.username))
                 return BadRequest("This username already exist");
 
-            var newuser = new User
-            {
-
-                Username = userdto.username
-
-            };
+            var newuser = _mapper.Map<User>(userdto);
             var newcreateduser = await _repo.Register(newuser, userdto.password);
+            var usertoreturn=_mapper.Map<UserDetailDto>(newcreateduser);
 
-            return StatusCode(201);
+            return  CreatedAtRoute("GetUser",new{controller="Users",id=newcreateduser.Id},usertoreturn);
         }
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userdto)

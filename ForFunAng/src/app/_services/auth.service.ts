@@ -17,7 +17,7 @@ baseUrl = environment.apiUrl + 'auth/';
 JWTHelper = new JwtHelperService;
 decodedToken: any;
 currentUser: User;
-photoUrl = new BehaviorSubject<string>('../../assets/user.png');
+photoUrl = new BehaviorSubject<string>('../../../../assets/16.1 user.png');
 currentPhotoUrl = this.photoUrl.asObservable();
 constructor(private http: HttpClient) { }
 changeMemberphoto(photoUrl: string) {
@@ -40,9 +40,9 @@ map((response: any) => {
 
  );
 }
-register(model: any ) {
+register(user: User ) {
 
-  return this.http.post(this.baseUrl + 'Register', model);
+  return this.http.post(this.baseUrl + 'Register', user);
 
 }
 
