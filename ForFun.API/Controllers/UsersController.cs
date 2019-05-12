@@ -7,9 +7,10 @@ using ForFun.API.Dtos;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System;
+using ForFun.API.Helpers;
 
 namespace ForFun.API.Controllers
-{
+{   [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
