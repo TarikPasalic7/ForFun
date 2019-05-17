@@ -11,13 +11,16 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 
 export class MemberListResolver implements Resolve<User[]> {
+
+    pageNumber = 1;
+    pageSize = 6;
     constructor(private userservice: UserService, private router: Router, private alertify: AlertifyService) {
 
 
     }
 
     resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
-        return this.userservice.getusers().pipe(
+        return this.userservice.getusers(this.pageNumber, this.pageSize).pipe(
 
             catchError(error => {
                this.alertify.error('Problem retrieving data');

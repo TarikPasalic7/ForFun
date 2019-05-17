@@ -27,10 +27,22 @@ namespace ForFun.API.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers(){
+        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams){
+             
+             var currentUserID=int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-          var users=await _repo.Getusers();
+             var userfromrepo=  await _repo.GetUser(currentUserID);
+
+             userParams.UserId=userfromrepo.Id;
+
+             if(string.IsNullOrEmpty(userParams.Gender)){
+               
+               userParams.Gender=userfromrepo.Gender == "male"? "female" :"male";
+
+             }
+          var users=await _repo.Getusers(userParams);
            var usertoreturn=_mapper.Map<IEnumerable<UserforListDto>>(users);
+           Response.AddPagination(users.currentPage,userParams.PageSize,users.totalCount,users.totalPages);
           return Ok(usertoreturn);
             
         }
