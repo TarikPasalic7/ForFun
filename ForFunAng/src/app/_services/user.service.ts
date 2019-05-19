@@ -15,7 +15,7 @@ baseurl = environment.apiUrl;
 constructor(private http: HttpClient) { }
 
 
-getusers(page?, itemsPerPage?, userParams?): Observable<PaginatedResult<User[]>> {
+getusers(page?, itemsPerPage?, userParams?, likesParam?): Observable<PaginatedResult<User[]>> {
   const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
   let params = new HttpParams;
 
@@ -32,6 +32,17 @@ getusers(page?, itemsPerPage?, userParams?): Observable<PaginatedResult<User[]>>
    
 
   }
+  if (likesParam === 'Likers') {
+      
+       params = params.append('Likers', 'true');
+
+  }
+
+  if (likesParam === 'Likees') {
+      
+    params = params.append('Likees', 'true');
+
+}
 
 
   return this.http.get<User[]>(this.baseurl + 'users', {observe: 'response', params})
@@ -70,5 +81,8 @@ deletePhoto(userid: number, id: number) {
 
   return this.http.delete(this.baseurl + 'users/' + userid + '/photos/' + id );
 
+}
+sendLike(id: number, recipientId: number) {
+  return this.http.post(this.baseurl + 'users/' + id + '/like/' + recipientId , {});
 }
 }

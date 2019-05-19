@@ -16,5 +16,10 @@ namespace ForFun.API.Data
 
          Task<Photo> GetPhoto(int id);
           Task<Photo> GetMainPhotoUser(int Userid);
+
+          Task<Like> GetLike(int userId,int recipientId);
+
+
+          
     }
 }

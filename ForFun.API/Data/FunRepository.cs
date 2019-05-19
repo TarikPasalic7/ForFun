@@ -25,6 +25,11 @@ namespace ForFun.API.Data
             _context.Remove(entity);
         }
 
+        public async Task<Like> GetLike(int userId, int recipientId)
+        {
+            return await _context.Likes.FirstOrDefaultAsync(u => u.LikerId == userId && u.LikeeId == recipientId);
+        }
+
         public  async Task<Photo> GetMainPhotoUser(int Userid)
         {
             return await _context.Photos.Where(u=>u.UserId==Userid).FirstOrDefaultAsync(p=>p.mainphoto);
@@ -51,6 +56,19 @@ namespace ForFun.API.Data
             users= users.Where(u => u.Id != userParams.UserId);
             users= users.Where(u => u.Gender == userParams.Gender);
 
+
+            if(userParams.Likers) {
+
+              var userlikers= await GetLikes(userParams.UserId,userParams.Likers);
+              users=users.Where(u => userlikers.Contains(u.Id));
+            }
+
+            if(userParams.Likees) {
+
+                    var userlikees= await GetLikes(userParams.UserId,userParams.Likers);
+              users=users.Where(u => userlikees.Contains(u.Id));
+            }
+
             if(userParams.MinAge!=18 || userParams.MaxAge!=99){
                   var mindate=DateTime.Today.AddYears(-userParams.MaxAge-1);
                   var maxdate=DateTime.Today.AddYears(-userParams.MinAge);
@@ -73,6 +91,22 @@ namespace ForFun.API.Data
 
            }
             return await PagedList<User>.CreateAsync(users,userParams.pageNumber,userParams.PageSize);
+        }
+
+        private async Task<IEnumerable<int>> GetLikes(int id,bool likers) {
+
+        var user= await _context.Users.Include(u => u.Likers).Include(us => us.Likees).FirstOrDefaultAsync(i => i.Id==id);
+
+        if(likers)
+        {
+            return user.Likers.Where(u => u.LikeeId==id).Select(i => i.LikerId);
+        }
+        else {
+              
+               return user.Likees.Where(u => u.LikerId==id).Select(i => i.LikeeId);
+
+        }
+
         }
 
         public async Task<bool> SaveAll()
