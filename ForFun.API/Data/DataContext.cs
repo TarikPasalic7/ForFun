@@ -15,6 +15,8 @@ namespace ForFun.API.Data
 
      public DbSet<Like> Likes { get; set; }
 
+      public DbSet<Message> Messages { get; set; }
+
      protected override void OnModelCreating(ModelBuilder builder) {
 
          builder.Entity<Like>().HasKey(l=> new {l.LikerId , l.LikeeId});
@@ -22,6 +24,10 @@ namespace ForFun.API.Data
          builder.Entity<Like>().HasOne(u => u.Likee).WithMany(u => u.Likers).HasForeignKey(u=> u.LikeeId).OnDelete(DeleteBehavior.Restrict);
 
            builder.Entity<Like>().HasOne(u => u.Liker).WithMany(u => u.Likees).HasForeignKey(u=> u.LikerId).OnDelete(DeleteBehavior.Restrict);
+
+           builder.Entity<Message>().HasOne( u=> u.Sender).WithMany(m=>m.MessageSend).OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Message>().HasOne( u=> u.Recipient).WithMany(m=>m.MessageRecieved).OnDelete(DeleteBehavior.Restrict);
          
      }
    

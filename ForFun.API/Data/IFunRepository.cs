@@ -18,8 +18,9 @@ namespace ForFun.API.Data
           Task<Photo> GetMainPhotoUser(int Userid);
 
           Task<Like> GetLike(int userId,int recipientId);
-
-
+        Task<Message> GetMessage(int id);
+        Task<PagedList<Message>> GetMessagesforUser(MessageParams messageParams);
+            Task<IEnumerable<Message>> GetMessageThread(int userid,int recipientid);
           
     }
 }

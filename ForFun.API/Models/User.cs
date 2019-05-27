@@ -22,6 +22,8 @@ namespace ForFun.API.Models
        public ICollection<Like> Likers { get; set; }
 
        public ICollection<Like> Likees { get; set; }
+        public ICollection<Message> MessageSend { get; set; }
+         public ICollection<Message> MessageRecieved { get; set; }
 
 
     }
