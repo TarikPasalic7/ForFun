@@ -1,0 +1,22 @@
+
+  
+  .bg { 
+    /* The image used */
+    background-image: url("https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixlib=rb-1.2.1&w=1000&q=80.jpg");
+  
+    /* Full height */
+    height: 100%; 
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .btn-p{
+      background-color: rgb(200, 203, 214);
+      border: 3px solid rgb(9, 105, 84);
+      border-radius: 7px 7px;
+      font-family:fantasy;
+      
+  }

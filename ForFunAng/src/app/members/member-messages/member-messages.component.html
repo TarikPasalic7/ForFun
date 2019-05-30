@@ -19,7 +19,7 @@
 <div class="chat-body">
     <div class="header">
         <strong class="primary-font">
-           {{message.recipientUsername}}
+           {{message.senderUsername}}
         </strong>
         <small class="text-muted float-right">
             <span class="fa fa-clock">
@@ -33,7 +33,7 @@
 <!-- to me -->
 <div *ngIf="message.senderId !== recipientId">
     <span class="chat-img float-right">
-    <img src="{{message.senderPhotoUrl}}" alt="{{message.senderUsername}}" class="rounded-circle">
+    <img src="{{message.recipientPhotoUrl}}" alt="{{message.recipientUsername}}" class="rounded-circle">
     </span>
     </div>
     <div class="chat-body">

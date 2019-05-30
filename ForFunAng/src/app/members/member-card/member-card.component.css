@@ -48,3 +48,10 @@ opacity:0.7;
 transition: all 0.3s ease-in-out;
 
          }
+
+         .bg{
+
+            background-color:rgb(9, 105, 84);
+            color: white;
+            border-color: aliceblue;
+         }

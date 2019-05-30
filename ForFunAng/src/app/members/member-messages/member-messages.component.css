@@ -16,12 +16,12 @@ border-bottom: 1px dotted gray;
 
 .rounded-circle{
 
-    height:15px;
-    width: 15px;
+    height:45px;
+    width: 45px;
 }
 
 .card-body {
 
     overflow-y:scroll;
-    height: 400px;
+    height: 600px;
 }

@@ -4,12 +4,13 @@ width: 80%;
 height: 80%;
 }
 .card-body{
-padding: 0 25px;
+padding: 0  10px;
      
 }
 
 .card-footer{
 padding: 10px 15px;
-background-color:rgb(69, 231, 167);
+background-color:rgb(225, 238, 233);
 
 }
+
